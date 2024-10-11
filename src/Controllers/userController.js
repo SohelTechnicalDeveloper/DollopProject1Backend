@@ -167,6 +167,9 @@ export const userLogin = async (req,res)=>{
                 
                 res.status(200).send(login(response,token))
             }
+            else{
+                res.status(401).send(failure('Invalid Password'))
+            }
          }   
          
          else{
