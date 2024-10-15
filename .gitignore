@@ -1,4 +1,2 @@
-MONGOURL
-PORT
-SECRET_KEY
-env
+/node_modules
+.env
