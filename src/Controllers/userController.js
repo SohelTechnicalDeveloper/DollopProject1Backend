@@ -9,6 +9,7 @@ import passGenerator from 'generate-password'
 import twillio from 'twilio'
 import fs from 'fs'
 import cloudinary from 'cloudinary'
+import { log } from 'console';
 
 cloudinary.config({ 
     cloud_name: 'dbdmxzalv', 
@@ -19,25 +20,27 @@ cloudinary.config({
 dotenv.config()
 
 // Function to add a new user
+
 export const addUser = async (req, res) => 
     {
     
         // const OTP = Math.floor(100 + Math.random() * 150)
         const OTP = Math.floor(1000 + Math.random() * 9000);
-
-        
-     
+            
              try {
         // Log the request body (consider removing or securing this in production)
         
-        const { name, email, password, address,phone,image } = req.body;
+        console.log(req.body);
 
+        const { name, email, password, address,phone,image } = req.body;
+        console.log(name,email,password,address,phone,image);
          
-        // Input validation (this is just a basic example)
-        if (!name || !email  || !address || !phone  ) 
-        {
-            return  res.status(400).send(failure(400, 'All fields are required.'));
-        }
+        // Input validation check all field are required and not
+
+        if ( !name || !email  || !address || !phone  ) 
+            {
+                return  res.status(400).send(failure(400, 'All fields are required.'));
+            }
 
         // Check if the user already exists
         const existingUser = await userModel.findOne({ email });
@@ -45,9 +48,8 @@ export const addUser = async (req, res) =>
         if (existingUser) 
         {
             return res.status(400).send(failure(400, 'Email already registered.'));
-        }
-
-        // Hash the password
+        }   
+    
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Create the user
