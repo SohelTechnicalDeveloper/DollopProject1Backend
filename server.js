@@ -3,6 +3,9 @@ import dotenv from 'dotenv';
 import dbConnect from './src/config/dbConnect.js';
 import router from './src/Middleware/indexRoutes.js';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express'
+import swagger from './Swagger.js';
+
 
 // Load environment variables
 dotenv.config();
@@ -18,6 +21,10 @@ const app = express();
 dbConnect(MONGOURL);
 
 // Middleware
+
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swagger));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
