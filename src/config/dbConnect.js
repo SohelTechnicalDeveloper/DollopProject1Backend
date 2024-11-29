@@ -1,12 +1,14 @@
 import mongoose from "mongoose";
- 
-  function dbConnect(URL) 
+import dotenv from 'dotenv'
+dotenv.config();
+
+  function dbConnect() 
  {
-     mongoose.connect(URL)
+     mongoose.connect(process.env.MONGOURL)
   .then(() => console.log('Database connected successfully'))
   .catch(err => console.error('Database connection failed:', err));
 
-    console.log("dbConnect");
+    // console.log("dbConnect");
     
  }
     

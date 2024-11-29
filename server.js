@@ -12,13 +12,13 @@ dotenv.config();
 
 // Constants
 const PORT = process.env.PORT || 3003;
-const MONGOURL = process.env.MONGOURL;
+// const MONGOURL = process.env.MONGOURL;
 
 // Initialize Express app
 const app = express();
 
 // Connect to MongoDB
-dbConnect(MONGOURL);
+dbConnect();
 
 // Middleware
 
