@@ -4,32 +4,12 @@ dotenv.config();
 
   function dbConnect() 
  {
-     mongoose.connect(process.env.MONGOURL)
-  .then(() => console.log('Database connected successfully'))
-  .catch(err => console.error('Database connection failed:', err));
+   console.log(process.env.MONGOURL);
+     
+   mongoose.connect(process.env.MONGOURL || 'mongodb+srv://sohelkhanp619:xe1lem3XwliDv8dO@cluster0.5cvyl.mongodb.net/LoginSignup')
 
-    // console.log("dbConnect");
-    
+  .then(() => console.log('Database connected successfully'))
+  .catch(err => console.error('Database connection failed:', err));    
  }
     
  export default dbConnect
-
-
-// import mongoose from "mongoose";
-
-// function dbConnect(URL) {
-//     mongoose
-//         .connect(URL, {
-//             useNewUrlParser: true,
-//             useUnifiedTopology: true,
-//         })
-//         .then(() => {
-//             console.log("Database connected successfully!");
-//         })
-//         .catch((err) => {
-//             console.error("Database connection failed:", err.message);
-//             process.exit(1); // Exit the app if the DB connection fails
-//         });
-// }
-
-// export default dbConnect;
